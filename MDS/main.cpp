@@ -2,8 +2,6 @@
 
 
 
-
-
 int WINAPI WinMain(
 	HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
