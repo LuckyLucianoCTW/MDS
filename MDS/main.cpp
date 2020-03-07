@@ -9,5 +9,5 @@ int WINAPI WinMain(
 	int       nShowCmd
 )
 {
-
+	printf("Siktir");
 }
