@@ -31,7 +31,7 @@ void Visual::CleanupDeviceD3D()
 }
 Visual::Visual()
 {
-	WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("Chess Window"), NULL };
+	wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("Chess Window"), NULL };
 	RegisterClassEx(&wc);
 	hwnd = ::CreateWindow(wc.lpszClassName, _T("Chess"), WS_OVERLAPPEDWINDOW, 100, 100, 1280, 800, NULL, NULL, wc.hInstance, NULL);
 
@@ -47,7 +47,10 @@ Visual::Visual()
 
 Visual::~Visual()
 {
-
+	CleanupDeviceD3D();
+	DestroyWindow(hwnd);
+	UnregisterClass(wc.lpszClassName, wc.hInstance);
+	exit(0);
 }
 
 void Visual::StartRendering()

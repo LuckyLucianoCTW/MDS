@@ -18,4 +18,5 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance, LPSTR lpCmdLine,
 		render->StartRendering();
 	}
  
+	delete render;
 }
