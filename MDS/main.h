@@ -3,10 +3,10 @@
 #include <math.h>
 #include <stdio.h>
 #include <tchar.h>
-
+#include <d3dx9.h>
 
 #pragma comment(lib,"d3d9.lib")
-
+#pragma comment(lib,"d3dx9.lib")
 
 #ifndef IM_ASSERT
 #include <assert.h>
@@ -16,6 +16,7 @@
 
 class Visual
 {
+	
 	WNDCLASSEX wc;
 	LPDIRECT3D9 g_pD3D;
 	LPDIRECT3DDEVICE9 g_pd3dDevice;

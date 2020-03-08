@@ -2,6 +2,7 @@
 
 
  
+
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	if (render->ChessWndProc(hWnd, msg, wParam, lParam))
@@ -9,19 +10,21 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	return DefWindowProc(hWnd, msg, wParam, lParam);
 
 }
+
+
 bool Visual::ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch (msg)
 	{
  
 	case WM_DESTROY:
-	{
-		::PostQuitMessage(0);
+		PostQuitMessage(0);
 		return 1;
-	}
 	}
 	return 0;
 }
+
+
 bool Visual::CreateDeviceD3D(HWND hWnd)
 {
 
@@ -39,16 +42,20 @@ bool Visual::CreateDeviceD3D(HWND hWnd)
 
 	return true;
 }
+
+
 void Visual::CleanupDeviceD3D()
 {
 	if (g_pd3dDevice) { g_pd3dDevice->Release(); g_pd3dDevice = NULL; }
 	if (g_pD3D) { g_pD3D->Release(); g_pD3D = NULL; }
 }
+
+
 Visual::Visual()
 {
 	wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("Chess Window"), NULL };
 	RegisterClassEx(&wc);
-	hwnd = ::CreateWindow(wc.lpszClassName, _T("Chess"), WS_OVERLAPPEDWINDOW, 100, 100, 1280, 800, NULL, NULL, wc.hInstance, NULL);
+	hwnd = CreateWindow(wc.lpszClassName, _T("Chess"), WS_OVERLAPPEDWINDOW, 100, 100, 1280, 800, NULL, NULL, wc.hInstance, NULL);
 
 	if (!CreateDeviceD3D(hwnd))
 	{
@@ -60,6 +67,7 @@ Visual::Visual()
 	UpdateWindow(hwnd);
 }
 
+
 Visual::~Visual()
 {
 	CleanupDeviceD3D();
@@ -67,22 +75,17 @@ Visual::~Visual()
 	UnregisterClass(wc.lpszClassName, wc.hInstance);
 }
 
+
 void Visual::StartRendering()
 {
-	static int r = 0;
-	static int g = 0;
-	static int b = 0;
 	g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
 	g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
 	g_pd3dDevice->SetRenderState(D3DRS_SCISSORTESTENABLE, FALSE);
-	g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB(255,r,g,b), 1.0f, 0);
+	g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB(255,0,0,0), 1.0f, 0);
 	g_pd3dDevice->BeginScene();
+
 	g_pd3dDevice->EndScene();
 	HRESULT result = g_pd3dDevice->Present(NULL, NULL, NULL, NULL);
 	if (result == D3DERR_DEVICELOST && g_pd3dDevice->TestCooperativeLevel() == D3DERR_DEVICENOTRESET)
 	    g_pd3dDevice->Reset(&g_d3dpp);
-	if (r < 255)
-		r++;
-	if (r == 255 && g < 255)
-		g++;
 }
