@@ -1,10 +1,11 @@
 #include "main.h"
-Visual* render;
-
+Visual* Chess_Table;
+Render* Rendering;
 
 int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
-	render = new Visual;
+	Chess_Table = new Visual;
+	Rendering = new Render(Chess_Table->GetDevice(),Chess_Table->getd3dpp());
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
 	while (msg.message != WM_QUIT)
@@ -15,10 +16,10 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance, LPSTR lpCmdLine,
 			DispatchMessage(&msg);
 			continue;
 		}
-		render->StartRendering();
+		Chess_Table->StartRendering();
 	}
    
-	delete render;
+	delete Chess_Table;
 	 
 	return 0;
 }
