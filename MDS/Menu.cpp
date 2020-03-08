@@ -4,8 +4,23 @@
  
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+	if (render->ChessWndProc(hWnd, msg, wParam, lParam))
+		return true;
 	return DefWindowProc(hWnd, msg, wParam, lParam);
 
+}
+bool Visual::ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	switch (msg)
+	{
+ 
+	case WM_DESTROY:
+	{
+		::PostQuitMessage(0);
+		return 1;
+	}
+	}
+	return 0;
 }
 bool Visual::CreateDeviceD3D(HWND hWnd)
 {
@@ -50,7 +65,6 @@ Visual::~Visual()
 	CleanupDeviceD3D();
 	DestroyWindow(hwnd);
 	UnregisterClass(wc.lpszClassName, wc.hInstance);
-	exit(0);
 }
 
 void Visual::StartRendering()

@@ -23,9 +23,13 @@ class Visual
 	HWND hwnd;
 	bool CreateDeviceD3D(HWND hWnd);
 	void CleanupDeviceD3D();
-
 public:
+	bool ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	Visual();
 	~Visual();
 	void StartRendering();
+	LPDIRECT3DDEVICE9 GetDevice() { return g_pd3dDevice; }
+	D3DPRESENT_PARAMETERS getd3dpp() { return g_d3dpp; }
 };
+
+extern Visual* render;
