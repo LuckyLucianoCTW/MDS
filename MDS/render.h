@@ -11,7 +11,7 @@ public:
 	void Reset();
 	void Begin(DWORD FLAGS) { My_Pencil->Begin(FLAGS); }
 	void D3DBox(float x, float y, float w, float h, D3DCOLOR color);
-	void DrawImageAtPos(int pos_x, int pos_y, LPDIRECT3DTEXTURE9 tex, int size_x, int size_y);
+	void DrawImageAtPos(int pos_x, int pos_y, LPDIRECT3DTEXTURE9 tex, int size_x, int size_y, D3DCOLOR color = 0xFFFFFFFF);
 	void End() { My_Pencil->End(); }
 	void Draw(LPDIRECT3DTEXTURE9 pTexture, CONST RECT* pSrcRect, CONST D3DXVECTOR3* pCenter, CONST D3DXVECTOR3* pPosition, D3DCOLOR Color) { My_Pencil->Draw(pTexture, pSrcRect, pCenter, pPosition, Color); }
 };

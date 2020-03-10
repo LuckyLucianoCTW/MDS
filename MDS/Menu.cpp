@@ -1,7 +1,7 @@
 #include "main.h"
 
-
- 
+int offset = 250;
+int imageSize = 300;
 
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -40,12 +40,18 @@ bool Visual::CreateDeviceD3D(HWND hWnd)
 	if (g_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING, &g_d3dpp, &g_pd3dDevice) < 0)
 		return false;
  
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "rege.png", &pawns[0])))	exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "regina.png", &pawns[1]))) exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "nebun.png", &pawns[2]))) exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "cal.png", &pawns[3]))) exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "tura.png", &pawns[4]))) exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "pion.png", &pawns[5]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//rege.png", &pawns[0][0])))	exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//regina.png", &pawns[0][1]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//nebun.png", &pawns[0][2]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//cal.png", &pawns[0][3]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//tura.png", &pawns[0][4]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//pion.png", &pawns[0][5]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//rege.png", &pawns[1][0])))	exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//regina.png", &pawns[1][1]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//nebun.png", &pawns[1][2]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//cal.png", &pawns[1][3]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//tura.png", &pawns[1][4]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//pion.png", &pawns[1][5]))) exit(0);
 	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "background_border.png", &BackGround_Border))) exit(0); 
 	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "selected_white_square.png", &White_Square[0]))) exit(0);
 	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "white_square.png", &White_Square[1]))) exit(0);
@@ -64,9 +70,21 @@ void Visual::CleanupDeviceD3D()
 
 Visual::Visual()
 {
+	for (int i = 0; i < 2; i++)
+		for (int j = 0; j < 8; j++) {
+			pawnPos[0][(8 * i) + j].x = (float)j * (imageSize / 2);
+			pawnPos[0][(8 * i) + j].y = (imageSize * (0.5f + (float)i / 2.0f));
+		}
+	for (int i = 0; i < 2; i++)
+		for (int j = 0; j < 8; j++) 
+	    {
+				pawnPos[1][(8 * i) + j].x = (float)j * (imageSize / 2);
+				pawnPos[1][(8 * i) + j].y = (offset * 7) - (imageSize * (0.5f + (float)i/2.0f));
+		}
+ 
 	wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("Chess Window"), NULL };
 	RegisterClassEx(&wc);
-	hwnd = CreateWindow(wc.lpszClassName, _T("Chess"), WS_OVERLAPPEDWINDOW, 100, 100, 1280, 1280, NULL, NULL, wc.hInstance, NULL);
+	hwnd = CreateWindow(wc.lpszClassName, _T("Chess"), WS_OVERLAPPEDWINDOW, 100, 100, 800, 800, NULL, NULL, wc.hInstance, NULL);
 
 	if (!CreateDeviceD3D(hwnd))
 	{
@@ -106,12 +124,72 @@ void Visual::StartRendering()
 void Visual::DrawTable()
 { 
 	Rendering->Begin(D3DXSPRITE_ALPHABLEND);
-	float width = g_d3dpp.BackBufferWidth / 8.0f;
-	float height = g_d3dpp.BackBufferHeight / 8.0f;
+	int centerX = g_d3dpp.BackBufferWidth / 4;
+	int centerY = g_d3dpp.BackBufferHeight / 4;
 	for(int i = 0 ; i < 8; i++)
 		for (int j = 0; j < 8; j++)
 		{
-			Rendering->DrawImageAtPos(j, i, (i + j) % 2 ? White_Square[0] : Black_Square[0], 250, 250);
+			Rendering->DrawImageAtPos(centerX + (offset /2 * i), centerY + (offset /2 * j), (i + j) % 2 ? White_Square[0] : Black_Square[0], offset, offset);
 		}
+	for (int j = 0; j < 16; j++)
+	{
+		 
+	 
+		if (j < 8) {
+			int a = j;
+			if (a > 4)
+				a = 7 - a;
+			switch (a)
+			{
+			case 0:
+				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY - 2.0f * (imageSize - offset), pawns[0][4], imageSize, imageSize);
+				break;
+			case 1:
+				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY - 2.0f * (imageSize - offset), pawns[0][3], imageSize, imageSize);
+				break;
+			case 2:
+				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY - 2.0f * (imageSize - offset), pawns[0][2], imageSize, imageSize);
+				break;
+			case 3:
+				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY - 2.0f * (imageSize - offset), pawns[0][1], imageSize, imageSize);
+				break;
+			case 4:
+				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY - 2.0f * (imageSize - offset), pawns[0][0], imageSize, imageSize);
+				break;
+			}
+		}
+		else
+			Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY - 2.0f * (imageSize - offset), pawns[0][5], imageSize, imageSize);
+		
+	}
+	for (int j = 0; j < 16; j++) 
+	{
+		
+		if (j < 8) {
+			int a = j;
+			if (a > 4)
+				a = 7 - a;
+			switch (a)
+			{
+			case 0:
+				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[1][j].x, (int)pawnPos[1][j].y - centerY - 2.5f * (imageSize - offset), pawns[1][4], imageSize, imageSize);
+				break;
+			case 1:
+				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[1][j].x, (int)pawnPos[1][j].y - centerY - 2.5f * (imageSize - offset), pawns[1][3], imageSize, imageSize);
+				break;
+			case 2:
+				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[1][j].x, (int)pawnPos[1][j].y - centerY - 2.5f * (imageSize - offset), pawns[1][2], imageSize, imageSize);
+				break;
+			case 3:
+				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[1][j].x, (int)pawnPos[1][j].y - centerY - 2.5f * (imageSize - offset), pawns[1][0], imageSize, imageSize);
+				break;
+			case 4:
+				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[1][j].x, (int)pawnPos[1][j].y - centerY - 2.5f * (imageSize - offset), pawns[1][1], imageSize, imageSize);
+				break;
+			}
+		}
+		else
+			Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[1][j].x,  (int)pawnPos[1][j].y - centerY - 2.5f * (imageSize - offset), pawns[1][5], imageSize, imageSize);
+	} 
 	Rendering->End();
 }

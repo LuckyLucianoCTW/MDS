@@ -17,14 +17,17 @@
 #endif
 
 
+
+
 class Visual
 {
 	//120x120 8x8
  
-	LPDIRECT3DTEXTURE9 pawns[6];
+	LPDIRECT3DTEXTURE9 pawns[2][6];
 	LPDIRECT3DTEXTURE9 BackGround_Border;
 	LPDIRECT3DTEXTURE9 White_Square[2];
 	LPDIRECT3DTEXTURE9 Black_Square[2];
+	D3DXVECTOR2 pawnPos[2][16];
 	WNDCLASSEX wc;
 	LPDIRECT3D9 g_pD3D;
 	LPDIRECT3DDEVICE9 g_pd3dDevice;
