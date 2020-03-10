@@ -47,6 +47,10 @@ bool Visual::CreateDeviceD3D(HWND hWnd)
 	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "tura.png", &pawns[4]))) exit(0);
 	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "pion.png", &pawns[5]))) exit(0);
 	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "background_border.png", &BackGround_Border))) exit(0); 
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "selected_white_square.png", &White_Square[0]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "white_square.png", &White_Square[1]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "selected_black_square.png", &Black_Square[0]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "black_square.png", &Black_Square[1]))) exit(0);
 	return true; 
 }
 
@@ -88,7 +92,8 @@ void Visual::StartRendering()
 	g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
 	g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
 	g_pd3dDevice->SetRenderState(D3DRS_SCISSORTESTENABLE, FALSE);
-	g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB(255,0,0,0), 1.0f, 0);
+	g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB(255,255,0,0), 1.0f, 0);
+ 
 	g_pd3dDevice->BeginScene();
 	this->DrawTable();
 	g_pd3dDevice->EndScene();
@@ -101,7 +106,12 @@ void Visual::StartRendering()
 void Visual::DrawTable()
 { 
 	Rendering->Begin(D3DXSPRITE_ALPHABLEND);
-	Rendering->DrawImageAtPos(0, 0, BackGround_Border, g_d3dpp.BackBufferWidth, g_d3dpp.BackBufferHeight);
-	//Rendering->DrawImageAtPos(50, 50, pawns[0], 150, 150);
+	float width = g_d3dpp.BackBufferWidth / 8.0f;
+	float height = g_d3dpp.BackBufferHeight / 8.0f;
+	for(int i = 0 ; i < 8; i++)
+		for (int j = 0; j < 8; j++)
+		{
+			Rendering->DrawImageAtPos(j, i, (i + j) % 2 ? White_Square[0] : Black_Square[0], 250, 250);
+		}
 	Rendering->End();
 }
