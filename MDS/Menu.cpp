@@ -1,7 +1,7 @@
 #include "main.h"
 
-int offset = 250;
-int imageSize = 300;
+int offset = 60;
+int imageSize = 50;
 
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -11,12 +11,49 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 }
 
+float dist2d(float x, float y, float a, float b)
+{
+	return sqrt(pow((x - a), 2) + pow((y - b), 2));
+}
 
 bool Visual::ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch (msg)
 	{
+	case 0x201:
+	{
+		mouse.x = LOWORD(lParam);
+		mouse.y = HIWORD(lParam);
+		if (!isActivated)
+		{ 
+			int centerX = g_d3dpp.BackBufferWidth / 5;
+			int centerY = g_d3dpp.BackBufferHeight /5;
  
+		if ((mouse.x >= centerX && mouse.y >= centerY) && (mouse.x <= centerX + (8 * offset)) && mouse.y <=centerY + (8 * offset))
+		{ 
+				int i, j;
+				float distX = 9999.0f;
+				float distY = 9999.0f;
+				for (int k = 0; k < 8; k++)
+				{
+					float dist_x = abs(mouse.x - (offset / 2 + centerX + (k * offset)));
+					float dist_y = abs(mouse.y - (offset / 2 + centerY + (k * offset)));
+					if (distX > dist_x)
+					{
+						i = k;
+						distX = dist_x;
+					}
+					if (distY > dist_y)
+					{
+						j = k;
+						distY = dist_y;
+					}
+				}
+				isActivated = true;
+		}
+		}
+		break;
+	}
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 1;
@@ -72,14 +109,14 @@ Visual::Visual()
 {
 	for (int i = 0; i < 2; i++)
 		for (int j = 0; j < 8; j++) {
-			pawnPos[0][(8 * i) + j].x = (float)j * (imageSize / 2);
-			pawnPos[0][(8 * i) + j].y = (imageSize * (0.5f + (float)i / 2.0f));
+			pawnPos[0][(8 * i) + j].x = (float)j * offset + (offset - imageSize) / 2;
+			pawnPos[0][(8 * i) + j].y = i * offset + (offset - imageSize) / 2;
 		}
 	for (int i = 0; i < 2; i++)
 		for (int j = 0; j < 8; j++) 
 	    {
-				pawnPos[1][(8 * i) + j].x = (float)j * (imageSize / 2);
-				pawnPos[1][(8 * i) + j].y = (offset * 7) - (imageSize * (0.5f + (float)i/2.0f));
+				pawnPos[1][(8 * i) + j].x = (float)j * offset + (offset - imageSize) / 2;
+				pawnPos[1][(8 * i) + j].y = (offset * (7 - i)) + ((offset - imageSize) / 2);
 		}
  
 	wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("Chess Window"), NULL };
@@ -124,13 +161,12 @@ void Visual::StartRendering()
 void Visual::DrawTable()
 { 
 	Rendering->Begin(D3DXSPRITE_ALPHABLEND);
-	int centerX = g_d3dpp.BackBufferWidth / 4;
-	int centerY = g_d3dpp.BackBufferHeight / 4;
+	int centerX = g_d3dpp.BackBufferWidth / 5;
+	int centerY = g_d3dpp.BackBufferHeight / 5;
 	for(int i = 0 ; i < 8; i++)
 		for (int j = 0; j < 8; j++)
-		{
-			Rendering->DrawImageAtPos(centerX + (offset /2 * i), centerY + (offset /2 * j), (i + j) % 2 ? White_Square[0] : Black_Square[0], offset, offset);
-		}
+			Rendering->DrawImageAtPos(centerX + (offset * i), centerY + (offset * j), (i + j) % 2 ? White_Square[0] : Black_Square[0], offset, offset);
+	 
 	for (int j = 0; j < 16; j++)
 	{
 		 
@@ -142,24 +178,24 @@ void Visual::DrawTable()
 			switch (a)
 			{
 			case 0:
-				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY - 2.0f * (imageSize - offset), pawns[0][4], imageSize, imageSize);
+				Rendering->DrawImageAtPos(centerX + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY, pawns[0][4], imageSize, imageSize);
 				break;
 			case 1:
-				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY - 2.0f * (imageSize - offset), pawns[0][3], imageSize, imageSize);
+				Rendering->DrawImageAtPos(centerX + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY, pawns[0][3], imageSize, imageSize);
 				break;
 			case 2:
-				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY - 2.0f * (imageSize - offset), pawns[0][2], imageSize, imageSize);
+				Rendering->DrawImageAtPos(centerX + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY , pawns[0][2], imageSize, imageSize);
 				break;
 			case 3:
-				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY - 2.0f * (imageSize - offset), pawns[0][1], imageSize, imageSize);
+				Rendering->DrawImageAtPos(centerX + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY, pawns[0][1], imageSize, imageSize);
 				break;
 			case 4:
-				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY - 2.0f * (imageSize - offset), pawns[0][0], imageSize, imageSize);
+				Rendering->DrawImageAtPos(centerX + pawnPos[0][j].x, centerY + (int)pawnPos[0][j].y , pawns[0][0], imageSize, imageSize);
 				break;
 			}
 		}
 		else
-			Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[0][j].x, (int)pawnPos[0][j].y + centerY - 2.0f * (imageSize - offset), pawns[0][5], imageSize, imageSize);
+			Rendering->DrawImageAtPos(centerX + pawnPos[0][j].x, centerY + (int)pawnPos[0][j].y, pawns[0][5], imageSize, imageSize);
 		
 	}
 	for (int j = 0; j < 16; j++) 
@@ -172,24 +208,24 @@ void Visual::DrawTable()
 			switch (a)
 			{
 			case 0:
-				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[1][j].x, (int)pawnPos[1][j].y - centerY - 2.5f * (imageSize - offset), pawns[1][4], imageSize, imageSize);
+				Rendering->DrawImageAtPos(centerX   + pawnPos[1][j].x, centerY + (int)pawnPos[1][j].y, pawns[1][4], imageSize, imageSize);
 				break;
 			case 1:
-				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[1][j].x, (int)pawnPos[1][j].y - centerY - 2.5f * (imageSize - offset), pawns[1][3], imageSize, imageSize);
+				Rendering->DrawImageAtPos(centerX   + pawnPos[1][j].x, centerY + (int)pawnPos[1][j].y, pawns[1][3], imageSize, imageSize);
 				break;
 			case 2:
-				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[1][j].x, (int)pawnPos[1][j].y - centerY - 2.5f * (imageSize - offset), pawns[1][2], imageSize, imageSize);
+				Rendering->DrawImageAtPos(centerX  + pawnPos[1][j].x, centerY + (int)pawnPos[1][j].y, pawns[1][2], imageSize, imageSize);
 				break;
 			case 3:
-				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[1][j].x, (int)pawnPos[1][j].y - centerY - 2.5f * (imageSize - offset), pawns[1][0], imageSize, imageSize);
+				Rendering->DrawImageAtPos(centerX   + pawnPos[1][j].x, centerY + (int)pawnPos[1][j].y, pawns[1][0], imageSize, imageSize);
 				break;
 			case 4:
-				Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[1][j].x, (int)pawnPos[1][j].y - centerY - 2.5f * (imageSize - offset), pawns[1][1], imageSize, imageSize);
+				Rendering->DrawImageAtPos(centerX  + pawnPos[1][j].x, centerY+(int)pawnPos[1][j].y, pawns[1][1], imageSize, imageSize);
 				break;
 			}
 		}
 		else
-			Rendering->DrawImageAtPos(centerX + (imageSize - offset) + pawnPos[1][j].x,  (int)pawnPos[1][j].y - centerY - 2.5f * (imageSize - offset), pawns[1][5], imageSize, imageSize);
+			Rendering->DrawImageAtPos(centerX +  pawnPos[1][j].x, centerY + (int)pawnPos[1][j].y, pawns[1][5], imageSize, imageSize);
 	} 
-	Rendering->End();
+ 	Rendering->End();
 }

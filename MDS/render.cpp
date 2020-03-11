@@ -21,23 +21,18 @@ void Render::Reset()
 
 void Render::DrawImageAtPos(int pos_x, int pos_y, LPDIRECT3DTEXTURE9 tex, int size_x, int size_y, D3DCOLOR color)
 {
-	D3DXVECTOR2 trans = D3DXVECTOR2(0.0f, 0.0f);
+	D3DXVECTOR2 trans = D3DXVECTOR2(pos_x, pos_y);
 	float rotation = 0.0f;
 	D3DXMATRIX mat;
 	static D3DSURFACE_DESC x;
 	tex->GetLevelDesc(NULL, &x);
-	D3DXVECTOR2 spriteCentre = D3DXVECTOR2(0.0f,0.0f);
-	float scaleW = (float)x.Width / (float)size_x;
-	float scaleH = (float)x.Height / (float)size_y;
+	D3DXVECTOR2 spriteCentre = D3DXVECTOR2(size_x /2, size_y / 2);
+	float scaleW =  (float)size_x / (float)x.Width;
+	float scaleH =  (float)size_y / (float)x.Height;
 	D3DXVECTOR2 scaling(scaleW, scaleH);
-	D3DXMatrixTransformation2D(&mat, NULL, 0.0, &scaling, NULL, NULL, NULL);
+	D3DXMatrixTransformation2D(&mat, NULL, 0.0, &scaling, &spriteCentre, NULL, &trans);
 	My_Pencil->SetTransform(&mat);
-	D3DXVECTOR3 pos;
-	pos.x = pos_x;
-	pos.y = pos_y;
-	pos.z = 0.0f;
-	
-	My_Pencil->Draw(tex, NULL, NULL, &pos, color);
+	My_Pencil->Draw(tex, NULL, NULL, NULL, color);
 }
 
 void Render::D3DBox(float x, float y, float w, float h, D3DCOLOR color)

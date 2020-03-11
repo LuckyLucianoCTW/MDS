@@ -1,31 +1,24 @@
 ﻿  Menu.cpp
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(145,112): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(145,62): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(148,112): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(148,62): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(151,112): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(151,62): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(154,112): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(154,62): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(157,112): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(157,62): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(162,111): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(162,61): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(175,112): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(175,62): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(178,112): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(178,62): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(181,112): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(181,62): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(184,112): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(184,62): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(187,112): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(187,62): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(192,112): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(192,61): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(16,13): warning C4244:  'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(42,19): warning C4244:  'initializing': conversion from 'long' to 'float', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(43,19): warning C4244:  'initializing': conversion from 'long' to 'float', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(115,43): warning C4244:  '=': conversion from 'int' to 'FLOAT', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(121,52): warning C4244:  '=': conversion from 'int' to 'FLOAT', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(183,39): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(186,39): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(189,39): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(192,39): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(195,39): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(200,38): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(213,41): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(216,41): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(219,40): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(222,41): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(225,40): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(230,38): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
   Generating code
-  3 of 23 functions (13.0%) were compiled, the rest were copied from previous compilation.
+  2 of 26 functions ( 7.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   MDS.vcxproj -> C:\Users\windo\OneDrive\Desktop\MDS\Release\MDS.exe

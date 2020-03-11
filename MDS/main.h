@@ -21,8 +21,9 @@
 
 class Visual
 {
+	bool isActivated;
 	//120x120 8x8
- 
+	POINT mouse;
 	LPDIRECT3DTEXTURE9 pawns[2][6];
 	LPDIRECT3DTEXTURE9 BackGround_Border;
 	LPDIRECT3DTEXTURE9 White_Square[2];
