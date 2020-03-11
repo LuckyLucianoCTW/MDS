@@ -21,6 +21,7 @@
 
 class Visual
 {
+	int i, j;
 	bool isActivated;
 	//120x120 8x8
 	POINT mouse;
