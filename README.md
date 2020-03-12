@@ -1,2 +1,2 @@
 # MDS
-Proiect MDS F.M.I UniBuc Anu II
+Proiect MDS F.M.I UniBuc Anul II
