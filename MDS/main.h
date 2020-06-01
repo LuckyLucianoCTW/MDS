@@ -6,6 +6,7 @@
 #include <d3dx9.h>
 #include "render.h"
 #include <vector>
+#include <iostream>
 
 #pragma comment(lib,"d3d9.lib")
 #pragma comment(lib,"d3dx9.lib")
@@ -38,6 +39,9 @@ class Visual
 	bool CreateDeviceD3D(HWND hWnd);
 	void CleanupDeviceD3D();
 	void DrawTable();
+private:
+	bool IsAlrightToMoveToPos(int start_i, int start_j, int target_i, int target_j);
+	std::string WhatPieceItIs(int i, int j);
 public:
 	bool ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	Visual();

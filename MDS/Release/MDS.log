@@ -1,28 +1,27 @@
 ﻿  Menu.cpp
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(16,13): warning C4244:  'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(42,42): warning C4244:  'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(42,33): warning C4244:  'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(66,19): warning C4244:  'initializing': conversion from 'long' to 'float', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(67,19): warning C4244:  'initializing': conversion from 'long' to 'float', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(79,30): warning C4244:  '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(80,30): warning C4244:  '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(142,34): warning C4244:  '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(148,41): warning C4244:  '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(213,39): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(216,39): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(219,39): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(222,39): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(225,39): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(230,38): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(243,41): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(246,41): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(249,40): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(252,41): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(255,40): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\OneDrive\Desktop\MDS\MDS\Menu.cpp(260,38): warning C4244:  'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(99,42): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(99,33): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(123,19): warning C4244: 'initializing': conversion from 'long' to 'float', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(124,19): warning C4244: 'initializing': conversion from 'long' to 'float', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(138,31): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(139,31): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(201,34): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(207,41): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(273,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(276,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(279,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(282,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(285,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(290,38): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(304,41): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(307,41): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(310,40): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(313,41): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(316,40): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(321,38): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
   Generating code
-  2 of 27 functions ( 7.4%) were compiled, the rest were copied from previous compilation.
+  1 of 104 functions ( 1.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  MDS.vcxproj -> C:\Users\windo\OneDrive\Desktop\MDS\Release\MDS.exe
+  MDS.vcxproj -> C:\Users\windo\Desktop\MDS\Release\MDS.exe

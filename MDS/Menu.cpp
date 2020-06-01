@@ -3,6 +3,26 @@
 int offset = 60;
 int imageSize = 50;
 
+using namespace std;
+
+const int iVecinPion[] = { 1,2,1,1 };
+const int jVecinPion[] = { 0,0,1,-1 };
+const int iVecinCal[] = { 1,1,-1,-1,2,2,-2,-2 };
+const int jVecinCal[] = { 2,-2,2,-2,1,-1,1,-1 };
+const int iVecinNebun[] = { 1,2,3,4,5,6,7,8,-1,-2,-3,-4,-5,-6,-7,-8,1,2,3,4,5,6,7,8,-1,-2,-3,-4,-5,-6,-7,-8 };
+const int jVecinNebun[] = { 1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8,-1,-2,-3,-4,-5,-6,-7,-8,-1,-2,-3,-4,-5,-6,-7,-8 };
+const int iVecinRegina[] = { 1,2,3,4,5,6,7,8,-1,-2,-3,-4,-5,-6,-7,-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,-1,-2,-3,-4,-5,-6,-7,-8,1,2,3,4,5,6,7,8,-1,-2,-3,-4,-5,-6,-7,-8 };
+const int jVecinRegina[] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,-1,-2,-3,-4,-5,-6,-7,-8,1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8,-1,-2,-3,-4,-5,-6,-7,-8,-1,-2,-3,-4,-5,-6,-7,-8 };
+const int iVecinRege[] = { 1,1,1,-1,-1,-1,0,0 };
+const int jVecinRege[] = { 1,0,-1,1,0,-1,1,-1 };
+const int iVecinTura[] = { 1,2,3,4,5,6,7,8,-1,-2,-3,-4,-5,-6,-7,-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
+const int jVecinTura[] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,-1,-2,-3,-4,-5,-6,-7,-8 };
+
+
+
+
+
+
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	if (Chess_Table->ChessWndProc(hWnd, msg, wParam, lParam))
@@ -14,6 +34,45 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 float dist2d(float x, float y, float a, float b)
 {
 	return sqrt(pow((x - a), 2) + pow((y - b), 2));
+}
+
+
+
+std::string Visual::WhatPieceItIs(int i, int j)
+{
+
+	int a = j;
+	if (a > 4)
+		a = 7 - a;
+	switch (a)
+	{
+	case 0:
+		return "tura";
+	case 1:
+		return "cal";
+	case 2:
+		return "nebun";
+	case 3:
+		return "rege";
+	case 4:
+		return "regina";
+	default:
+		return "pion";
+	}
+		
+
+}
+
+bool Visual::IsAlrightToMoveToPos(int start_i,int start_j,int target_i, int target_j)
+{ 
+	printf(WhatPieceItIs(start_i, start_j).c_str());
+	printf("\n");
+	//1,0 -> rege
+	//1,1 -> regina
+	//1,2 -> nebunu
+	//1,3 -> cal
+	//1,4 -> tura
+	//1,5 -> pion
 }
 
 bool Visual::ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -29,21 +88,18 @@ bool Visual::ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		if (!isActivated)
 		{ 
 		 
- 
 			if ((mouse.x >= centerX && mouse.y >= centerY) && (mouse.x <= centerX + (8 * offset)) && mouse.y <=centerY + (8 * offset))
 			{ 
-				i = -1;
-				j = -1;
+				i = -1; //my_i_pos
+				j = -1; //my_j_pos
 				float distX = 9999.0f;
-				float distY = 9999.0f;
-				for(int l = 0 ; l < 2; l++)
+				float distY = 9999.0f; 
 				for (int k = 0; k < 16; k++)
 				{
-					float dist_x = dist2d(mouse.x, mouse.y , (offset / 2 + centerX + pawnPos[l][k].x), (offset / 2 + centerY + pawnPos[l][k].y));
-					 
-					if (distX > dist_x)
+					float dist_x = dist2d(mouse.x, mouse.y , (offset / 2 + centerX + pawnPos[1][k].x), (offset / 2 + centerY + pawnPos[1][k].y));  
+					if (distX > dist_x && dist_x < 30.0f)
 					{ 
-						i = l;
+						i = 1;
 						j = k;
 						distX = dist_x;
 					}
@@ -56,8 +112,8 @@ bool Visual::ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		{
 			if ((mouse.x >= centerX && mouse.y >= centerY) && (mouse.x <= centerX + (8 * offset)) && mouse.y <= centerY + (8 * offset))
 			{
-				int i_x;
-				int j_y;
+				int i_x; //target
+				int j_y; //target
 				float distX = 9999.0f;
 				float distY = 9999.0f; 
 				for (int k = 0; k < 8; k++)
@@ -75,9 +131,12 @@ bool Visual::ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 						distY = dist_y;
 					}
 				}
-				pawnPos[i][j].x = offset * i_x;
-				pawnPos[i][j].y = offset * j_y;
-				isActivated = false;
+				//verificarea
+				if (IsAlrightToMoveToPos(i,j,i_x, j_y)) {
+					pawnPos[i][j].x = offset * i_x;
+					pawnPos[i][j].y = offset * j_y;
+					isActivated = false;
+				}
 			}
 		}
 		break;
@@ -103,20 +162,19 @@ bool Visual::CreateDeviceD3D(HWND hWnd)
 	g_d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
 	g_d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_ONE; 
 	if (g_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING, &g_d3dpp, &g_pd3dDevice) < 0)
-		return false;
- 
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//rege.png", &pawns[0][0])))	exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//regina.png", &pawns[0][1]))) exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//nebun.png", &pawns[0][2]))) exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//cal.png", &pawns[0][3]))) exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//tura.png", &pawns[0][4]))) exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//pion.png", &pawns[0][5]))) exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//rege.png", &pawns[1][0])))	exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//regina.png", &pawns[1][1]))) exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//nebun.png", &pawns[1][2]))) exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//cal.png", &pawns[1][3]))) exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//tura.png", &pawns[1][4]))) exit(0);
-	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//pion.png", &pawns[1][5]))) exit(0);
+		return false; 
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//rege.png", &pawns[1][0])))	exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//regina.png", &pawns[1][1]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//nebun.png", &pawns[1][2]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//cal.png", &pawns[1][3]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//tura.png", &pawns[1][4]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "whites//pion.png", &pawns[1][5]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//rege.png", &pawns[0][0])))	exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//regina.png", &pawns[0][1]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//nebun.png", &pawns[0][2]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//cal.png", &pawns[0][3]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//tura.png", &pawns[0][4]))) exit(0);
+	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "blacks//pion.png", &pawns[0][5]))) exit(0);
 	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "background_border.png", &BackGround_Border))) exit(0); 
 	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "selected_white_square.png", &White_Square[0]))) exit(0);
 	if (FAILED(D3DXCreateTextureFromFileA(g_pd3dDevice, "white_square.png", &White_Square[1]))) exit(0);
@@ -198,6 +256,7 @@ void Visual::DrawTable()
 	int image_center = ((offset - imageSize) / 2);
 	centerY += image_center;
 	centerX += image_center;
+ 
 	for (int j = 0; j < 16; j++)
 	{
 		 
@@ -232,7 +291,8 @@ void Visual::DrawTable()
 	for (int j = 0; j < 16; j++) 
 	{
 		
-		if (j < 8) {
+		if (j < 8) 
+		{
 			int a = j;
 			if (a > 4)
 				a = 7 - a;
