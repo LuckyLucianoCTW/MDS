@@ -41,7 +41,9 @@ class Visual
 	void DrawTable();
 private:
 	bool IsAlrightToMoveToPos(int start_i, int start_j, int target_i, int target_j);
-	std::string WhatPieceItIs(int i, int j);
+	std::string WhatPieceItIs(int j);
+	bool IsPositionOcuppied(float posX, float posY);
+	bool isLineOfSightClear(int start_i, int start_j, int target_i, int target_j,std::string piesa);
 public:
 	bool ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	Visual();

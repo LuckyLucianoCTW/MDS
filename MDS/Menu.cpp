@@ -38,7 +38,7 @@ float dist2d(float x, float y, float a, float b)
 
 
 
-std::string Visual::WhatPieceItIs(int i, int j)
+std::string Visual::WhatPieceItIs(int j)
 {
 
 	int a = j;
@@ -62,11 +62,210 @@ std::string Visual::WhatPieceItIs(int i, int j)
 		
 
 }
+bool Visual::IsPositionOcuppied(float posX, float posY)
+{ 
+	for (int i = 0; i < 2; i++)
+		for (int j = 0; j < 16; j++) {
+		//	printf("IsOcuppied = %f %f | %f %f\n", pawnPos[i][j].x, pawnPos[i][j].y, posX, posY);
+			if (pawnPos[i][j].x == posX & pawnPos[i][j].y == posY)
+				
+				return true;
+		}
+	
+	return false;
+}
+bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int target_j, std::string piesa)
+{  
+	if (piesa == "tura")
+	{ 
+		if (start_i == target_i)
+		{ 
+			if (start_j < target_j) {
+				for (int j = start_j + offset; j < target_j; j += offset)
+				{ 
+					if (IsPositionOcuppied(start_i, j))
+						return false;
+				}
+				return true;
+			}
+			else
+			{
+				for (int j = target_j + offset; j < start_j; j += offset)
+				{ 
+					if (IsPositionOcuppied(start_i, j))
+						return false;
+				}
+				return true;
+			}
+			
+		}
+		else if (start_j == target_j)
+		{ 
+			if (start_i < target_i) {
+				for (float j = start_i + offset; j < target_i; j += offset)
+				{
+					if (IsPositionOcuppied(j, start_j))
+						return false;
+				}
+				return true;
+			}
+			else
+			{
+				for (int j = target_i + offset; j < start_i; j += offset)
+				{ 
+					if (IsPositionOcuppied(j, start_j))
+						return false;
+				}
+				return true;
+			}
+		}
+		else
+			return false;
+	}
+	else if (piesa == "nebun")
+	{ 
+		if (abs(start_i - target_i) == abs(start_j - target_j))
+		{
+			if (start_i > target_i && start_j > target_j)
+			{
+				for (int i = target_i + offset,  j = target_j + offset; i < start_i && j < start_j; i += offset, j += offset)
+				{
+					if (IsPositionOcuppied(i, j))
+						return false;
+				}
+				return true;
+			}
+			else if (start_i < target_i && start_j > target_j)
+			{
+				for (int i = start_i + offset, j = target_j + offset; i < target_i && j < start_j; i += offset, j += offset)
+				{
+					if (IsPositionOcuppied(i, j))
+						return false;
+				}
+				return true;
+			}
+			else if (start_i < target_i && start_j < target_j)
+			{
+				for (int i = start_i + offset, j = start_j + offset; i < target_i && j < target_j; i += offset, j += offset)
+				{
+					if (IsPositionOcuppied(i, j))
+						return false;
+				}
+				return true;
+			}
+			else if (start_i > target_i && start_j < target_j)
+			{
+				int i;
+				int j;
+				for (int i = target_i + offset, j = start_j + offset; i < start_i && j < target_j; i += offset, j += offset)
+				{
+					if (IsPositionOcuppied(i, j))
+						return false;
+				}
+				return true;
+			}
+		}
+		else 
+		{
+			return false;
+		}
+	}
+	else if (piesa == "regina")
+	{
+		if (abs(start_i - target_i) == abs(start_j - target_j))
+		{
+			if (start_i > target_i && start_j > target_j)
+			{
+				for (int i = target_i + offset, j = target_j + offset; i < start_i && j < start_j; i += offset, j += offset)
+				{
+					if (IsPositionOcuppied(i, j))
+						return false;
+				}
+				return true;
+			}
+			else if (start_i < target_i && start_j > target_j)
+			{
+				for (int i = start_i + offset, j = target_j + offset; i < target_i && j < start_j; i += offset, j += offset)
+				{
+					if (IsPositionOcuppied(i, j))
+						return false;
+				}
+				return true;
+			}
+			else if (start_i < target_i && start_j < target_j)
+			{
+				for (int i = start_i + offset, j = start_j + offset; i < target_i && j < target_j; i += offset, j += offset)
+				{
+					if (IsPositionOcuppied(i, j))
+						return false;
+				}
+				return true;
+			}
+			else if (start_i > target_i && start_j < target_j)
+			{
+				int i;
+				int j;
+				for (int i = target_i + offset, j = start_j + offset; i < start_i && j < target_j; i += offset, j += offset)
+				{
+					if (IsPositionOcuppied(i, j))
+						return false;
+				}
+				return true;
+			}
+		}
+		if (start_i == target_i)
+		{
+			if (start_j < target_j) {
+				for (int j = start_j + offset; j < target_j; j += offset)
+				{
+					if (IsPositionOcuppied(start_i, j))
+						return false;
+				}
+				return true;
+			}
+			else
+			{
+				for (int j = target_j + offset; j < start_j; j += offset)
+				{
+					if (IsPositionOcuppied(start_i, j))
+						return false;
+				}
+				return true;
+			}
+
+		}
+		else if (start_j == target_j)
+		{
+			if (start_i < target_i) {
+				for (float j = start_i + offset; j < target_i; j += offset)
+				{
+					if (IsPositionOcuppied(j, start_j))
+						return false;
+				}
+				return true;
+			}
+			else
+			{
+				for (int j = target_i + offset; j < start_i; j += offset)
+				{
+					if (IsPositionOcuppied(j, start_j))
+						return false;
+				}
+				return true;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+}
 
 bool Visual::IsAlrightToMoveToPos(int start_i,int start_j,int target_i, int target_j)
-{ 
-	printf(WhatPieceItIs(start_i, start_j).c_str());
-	printf("\n");
+{  
+	int posX = offset * target_i;
+	int posY = offset * target_j; 
+	return isLineOfSightClear((int)pawnPos[start_i][start_j].x, (int)pawnPos[start_i][start_j].y, posX, posY, WhatPieceItIs(start_j));
 	//1,0 -> rege
 	//1,1 -> regina
 	//1,2 -> nebunu
@@ -132,7 +331,8 @@ bool Visual::ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 					}
 				}
 				//verificarea
-				if (IsAlrightToMoveToPos(i,j,i_x, j_y)) {
+				if (IsAlrightToMoveToPos(i,j,i_x, j_y)) 
+				{
 					pawnPos[i][j].x = offset * i_x;
 					pawnPos[i][j].y = offset * j_y;
 					isActivated = false;
