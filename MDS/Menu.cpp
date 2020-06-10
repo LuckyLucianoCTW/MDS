@@ -5,8 +5,9 @@ int imageSize = 50;
 
 using namespace std;
 
-const int iVecinPion[] = { 1,2,1,1 };
-const int jVecinPion[] = { 0,0,1,-1 };
+ 
+const int jVecinPion[] = { 1,2,1,1 };
+const int iVecinPion[] = { 0,0,1,-1 };
 const int iVecinCal[] = { 1,1,-1,-1,2,2,-2,-2 };
 const int jVecinCal[] = { 2,-2,2,-2,1,-1,1,-1 };
 const int iVecinNebun[] = { 1,2,3,4,5,6,7,8,-1,-2,-3,-4,-5,-6,-7,-8,1,2,3,4,5,6,7,8,-1,-2,-3,-4,-5,-6,-7,-8 };
@@ -17,9 +18,6 @@ const int iVecinRege[] = { 1,1,1,-1,-1,-1,0,0 };
 const int jVecinRege[] = { 1,0,-1,1,0,-1,1,-1 };
 const int iVecinTura[] = { 1,2,3,4,5,6,7,8,-1,-2,-3,-4,-5,-6,-7,-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 const int jVecinTura[] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,-1,-2,-3,-4,-5,-6,-7,-8 };
-
-
-
 
 
 
@@ -62,17 +60,25 @@ std::string Visual::WhatPieceItIs(int j)
 		
 
 }
-bool Visual::IsPositionOcuppied(float posX, float posY)
+int* Visual::IsPositionOcuppied(int posX, int posY)
 { 
-	for (int i = 0; i < 2; i++)
+	int v[3];
+	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 16; j++) {
-		//	printf("IsOcuppied = %f %f | %f %f\n", pawnPos[i][j].x, pawnPos[i][j].y, posX, posY);
-			if (pawnPos[i][j].x == posX & pawnPos[i][j].y == posY)
-				
-				return true;
+			//	printf("IsOcuppied = %f %f | %f %f\n", pawnPos[i][j].x, pawnPos[i][j].y, posX, posY);
+			if (pawnPos[i][j].x == posX && pawnPos[i][j].y == posY)
+			{
+				v[0] = 1;
+				v[1] = i;
+				v[2] = j;
+				return v;
+			}
 		}
-	
-	return false;
+	}
+	v[0] = 0;
+	v[1] = 0;
+	v[2] = 0;
+	return v;
 }
 bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int target_j, std::string piesa)
 {  
@@ -83,7 +89,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			if (start_j < target_j) {
 				for (int j = start_j + offset; j < target_j; j += offset)
 				{ 
-					if (IsPositionOcuppied(start_i, j))
+					if (IsPositionOcuppied(start_i, j)[0])
 						return false;
 				}
 				return true;
@@ -92,7 +98,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			{
 				for (int j = target_j + offset; j < start_j; j += offset)
 				{ 
-					if (IsPositionOcuppied(start_i, j))
+					if (IsPositionOcuppied(start_i, j)[0])
 						return false;
 				}
 				return true;
@@ -104,7 +110,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			if (start_i < target_i) {
 				for (float j = start_i + offset; j < target_i; j += offset)
 				{
-					if (IsPositionOcuppied(j, start_j))
+					if (IsPositionOcuppied(j, start_j)[0])
 						return false;
 				}
 				return true;
@@ -113,7 +119,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			{
 				for (int j = target_i + offset; j < start_i; j += offset)
 				{ 
-					if (IsPositionOcuppied(j, start_j))
+					if (IsPositionOcuppied(j, start_j)[0])
 						return false;
 				}
 				return true;
@@ -130,7 +136,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			{
 				for (int i = target_i + offset,  j = target_j + offset; i < start_i && j < start_j; i += offset, j += offset)
 				{
-					if (IsPositionOcuppied(i, j))
+					if (IsPositionOcuppied(i, j)[0])
 						return false;
 				}
 				return true;
@@ -139,7 +145,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			{
 				for (int i = start_i + offset, j = target_j + offset; i < target_i && j < start_j; i += offset, j += offset)
 				{
-					if (IsPositionOcuppied(i, j))
+					if (IsPositionOcuppied(i, j)[0])
 						return false;
 				}
 				return true;
@@ -148,7 +154,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			{
 				for (int i = start_i + offset, j = start_j + offset; i < target_i && j < target_j; i += offset, j += offset)
 				{
-					if (IsPositionOcuppied(i, j))
+					if (IsPositionOcuppied(i, j)[0])
 						return false;
 				}
 				return true;
@@ -159,7 +165,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 				int j;
 				for (int i = target_i + offset, j = start_j + offset; i < start_i && j < target_j; i += offset, j += offset)
 				{
-					if (IsPositionOcuppied(i, j))
+					if (IsPositionOcuppied(i, j)[0])
 						return false;
 				}
 				return true;
@@ -178,7 +184,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			{
 				for (int i = target_i + offset, j = target_j + offset; i < start_i && j < start_j; i += offset, j += offset)
 				{
-					if (IsPositionOcuppied(i, j))
+					if (IsPositionOcuppied(i, j)[0])
 						return false;
 				}
 				return true;
@@ -187,7 +193,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			{
 				for (int i = start_i + offset, j = target_j + offset; i < target_i && j < start_j; i += offset, j += offset)
 				{
-					if (IsPositionOcuppied(i, j))
+					if (IsPositionOcuppied(i, j)[0])
 						return false;
 				}
 				return true;
@@ -196,7 +202,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			{
 				for (int i = start_i + offset, j = start_j + offset; i < target_i && j < target_j; i += offset, j += offset)
 				{
-					if (IsPositionOcuppied(i, j))
+					if (IsPositionOcuppied(i, j)[0])
 						return false;
 				}
 				return true;
@@ -207,7 +213,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 				int j;
 				for (int i = target_i + offset, j = start_j + offset; i < start_i && j < target_j; i += offset, j += offset)
 				{
-					if (IsPositionOcuppied(i, j))
+					if (IsPositionOcuppied(i, j)[0])
 						return false;
 				}
 				return true;
@@ -218,7 +224,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			if (start_j < target_j) {
 				for (int j = start_j + offset; j < target_j; j += offset)
 				{
-					if (IsPositionOcuppied(start_i, j))
+					if (IsPositionOcuppied(start_i, j)[0])
 						return false;
 				}
 				return true;
@@ -227,7 +233,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			{
 				for (int j = target_j + offset; j < start_j; j += offset)
 				{
-					if (IsPositionOcuppied(start_i, j))
+					if (IsPositionOcuppied(start_i, j)[0])
 						return false;
 				}
 				return true;
@@ -239,7 +245,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			if (start_i < target_i) {
 				for (float j = start_i + offset; j < target_i; j += offset)
 				{
-					if (IsPositionOcuppied(j, start_j))
+					if (IsPositionOcuppied(j, start_j)[0])
 						return false;
 				}
 				return true;
@@ -248,7 +254,7 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			{
 				for (int j = target_i + offset; j < start_i; j += offset)
 				{
-					if (IsPositionOcuppied(j, start_j))
+					if (IsPositionOcuppied(j, start_j)[0])
 						return false;
 				}
 				return true;
@@ -259,13 +265,150 @@ bool Visual::isLineOfSightClear(int start_i, int start_j, int target_i, int targ
 			return false;
 		}
 	}
+	else if (piesa == "cal")
+	{
+	int size_vec = sizeof(jVecinCal) / sizeof(jVecinCal[0]);
+
+	int target_pos_x = target_i / offset;
+	int target_pos_y = target_j / offset;
+	int start_pos_x = start_i / offset;
+	int start_pos_y = start_j / offset;
+	for (int i = 0; i < size_vec; i++) {
+		printf("First = %d %d | Second = %d %d\n", start_pos_x + iVecinCal[i], start_pos_y + jVecinCal[i], target_i, target_j);
+		if (start_pos_x + iVecinCal[i] == target_pos_x && start_pos_y + jVecinCal[i] == target_pos_y)
+		{
+			printf("Equals\n");
+			int* vector_teams = IsPositionOcuppied(target_i, target_j);
+			if (vector_teams[0] == 0)
+				return true;
+			else
+			{
+				if (vector_teams[1] != 1)
+					return true;
+				else
+					return false;
+			}
+		}
+	}
+	return false;
+	}
+	else if (piesa == "pion")
+	{
+	int target_pos_x = target_i / offset;
+	int target_pos_y = target_j / offset;
+	int start_pos_x = start_i / offset;
+	int start_pos_y = start_j / offset;
+	int* getTargetTeam = IsPositionOcuppied(target_i, target_j);
+	int* getMyTeam = IsPositionOcuppied(start_i, start_j);
+
+	int size = sizeof(iVecinPion) / sizeof(iVecinPion[0]);
+	printf("Start pos = %d %d || target = %d %d \n", start_pos_x, start_pos_y, target_pos_x, target_pos_y);
+	if (start_pos_y == 6 && getMyTeam[1] == 1) 
+	{ 
+		for (int i = 0; i < size; i++)
+		{
+			printf("Inside for = %d %d | target = %d %d\n", start_pos_x + iVecinPion[i], start_pos_y + jVecinPion[i], target_pos_x, target_pos_y);
+			if (start_pos_x - iVecinPion[i] == target_pos_x && start_pos_y - jVecinPion[i] == target_pos_y)
+			{
+				printf("Equals\n");
+				if (getTargetTeam[0] == 0 && (i != 2 && i != 3))
+				{
+					return true;
+				}
+				else if (getTargetTeam[1] == 0 && getTargetTeam[0] == true)
+				{
+					if (i == 2 || i == 3)
+						return true;
+					else
+						return false;
+				}
+				
+			}
+		}
+	}
+	else
+	{
+		for (int i = 0; i < size; i++)
+		{
+			if (i == 1)
+				continue;
+			if (start_pos_x - iVecinPion[i] == target_pos_x && start_pos_y - jVecinPion[i] == target_pos_y)
+			{
+				if (getTargetTeam[0] == 0 && (i != 2 && i != 3))
+				{
+					return true;
+				}
+				else if (getTargetTeam[1] == 0 && getTargetTeam[0] == true)
+				{
+					if (i == 2 || i == 3)
+						return true;
+					else
+						return false;
+				}
+
+			}
+		}
+	}
+	return false;
+	}
+	else if (piesa == "rege")
+	{
+	int target_pos_x = target_i / offset;
+	int target_pos_y = target_j / offset;
+	int start_pos_x = start_i / offset;
+	int start_pos_y = start_j / offset;
+	int size = sizeof(iVecinRege) / sizeof(iVecinRege[0]);
+	for (int i = 0; i < size; i++)
+	{
+		if (start_pos_x + iVecinRege[i] == target_pos_x && start_pos_y + jVecinRege[i] == target_pos_y)
+		{
+			int* vector_teams = IsPositionOcuppied(target_i, target_j);
+			if (vector_teams[0] == 0)
+				return true;
+			else
+			{
+				if (vector_teams[1] != 1)
+					return true;
+				else
+					return false;
+			}
+			//if is not check
+
+		}
+	}
+	return false;
+	}
+	return true;
 }
+
+
 
 bool Visual::IsAlrightToMoveToPos(int start_i,int start_j,int target_i, int target_j)
 {  
+	
 	int posX = offset * target_i;
 	int posY = offset * target_j; 
-	return isLineOfSightClear((int)pawnPos[start_i][start_j].x, (int)pawnPos[start_i][start_j].y, posX, posY, WhatPieceItIs(start_j));
+	string piece = WhatPieceItIs(start_j);
+	bool lineofsight = isLineOfSightClear((int)pawnPos[start_i][start_j].x, (int)pawnPos[start_i][start_j].y, posX, posY, WhatPieceItIs(start_j));
+	if (!lineofsight)
+		return false; 
+	int* vector_Pos;  
+	if ((vector_Pos = IsPositionOcuppied(posX, posY))[0])
+	{
+
+		if (vector_Pos[1] == start_i)
+			return false;
+		printf("Target : %d %d ||| id = %d %d |vector_pos = %d %d | start_i_j = %d %d \n", posX, posY, target_i, target_j, vector_Pos[1], vector_Pos[2],start_i,start_j); 
+		if ((!strcmp(piece.c_str(), "regina") || !strcmp(piece.c_str(), "nebun") || !strcmp(piece.c_str(), "tura") || !strcmp(piece.c_str(), "cal") || !strcmp(piece.c_str(), "pion") || !strcmp(piece.c_str(), "rege")))
+		{
+			printf("Am luat");
+			pawnPos[vector_Pos[1]][vector_Pos[2]].x = -1;
+			pawnPos[vector_Pos[1]][vector_Pos[2]].y = -1;
+			return true;
+		}  
+	}  
+
+	return true;
 	//1,0 -> rege
 	//1,1 -> regina
 	//1,2 -> nebunu
@@ -331,12 +474,14 @@ bool Visual::ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 					}
 				}
 				//verificarea
-				if (IsAlrightToMoveToPos(i,j,i_x, j_y)) 
+				if (IsAlrightToMoveToPos(i, j, i_x, j_y))
 				{
 					pawnPos[i][j].x = offset * i_x;
 					pawnPos[i][j].y = offset * j_y;
 					isActivated = false;
 				}
+				else
+					isActivated = false;
 			}
 		}
 		break;
@@ -468,24 +613,37 @@ void Visual::DrawTable()
 			switch (a)
 			{
 			case 0:
+				if (pawnPos[0][j].x == -1)
+					continue;
 				Rendering->DrawImageAtPos(centerX + pawnPos[0][j].x , (int)pawnPos[0][j].y + centerY , pawns[0][4], imageSize, imageSize);
 				break;
 			case 1:
+				if (pawnPos[0][j].x == -1)
+					continue;
 				Rendering->DrawImageAtPos(centerX + pawnPos[0][j].x , (int)pawnPos[0][j].y + centerY , pawns[0][3], imageSize, imageSize);
 				break;
 			case 2:
+				if (pawnPos[0][j].x == -1)
+					continue;
 				Rendering->DrawImageAtPos(centerX + pawnPos[0][j].x , (int)pawnPos[0][j].y + centerY , pawns[0][2], imageSize, imageSize);
 				break;
 			case 3:
+				if (pawnPos[0][j].x == -1)
+					continue;
 				Rendering->DrawImageAtPos(centerX + pawnPos[0][j].x , (int)pawnPos[0][j].y + centerY , pawns[0][1], imageSize, imageSize);
 				break;
 			case 4:
+				if (pawnPos[0][j].x == -1)
+					continue;
 				Rendering->DrawImageAtPos(centerX + pawnPos[0][j].x , centerY + (int)pawnPos[0][j].y , pawns[0][0], imageSize, imageSize);
 				break;
 			}
 		}
-		else
-			Rendering->DrawImageAtPos(centerX + pawnPos[0][j].x , centerY + (int)pawnPos[0][j].y , pawns[0][5], imageSize, imageSize);
+		else {
+			if (pawnPos[0][j].x == -1)
+				continue;
+			Rendering->DrawImageAtPos(centerX + pawnPos[0][j].x, centerY + (int)pawnPos[0][j].y, pawns[0][5], imageSize, imageSize);
+		}
 		
 	}
 	for (int j = 0; j < 16; j++) 
@@ -499,24 +657,37 @@ void Visual::DrawTable()
 			switch (a)
 			{
 			case 0:
+				if (pawnPos[1][j].x == -1)
+					continue;
 				Rendering->DrawImageAtPos(centerX   + pawnPos[1][j].x , centerY + (int)pawnPos[1][j].y , pawns[1][4], imageSize, imageSize);
 				break;
 			case 1:
+				if (pawnPos[1][j].x == -1)
+					continue;
 				Rendering->DrawImageAtPos(centerX   + pawnPos[1][j].x , centerY + (int)pawnPos[1][j].y , pawns[1][3], imageSize, imageSize);
 				break;
 			case 2:
+				if (pawnPos[1][j].x == -1)
+					continue;
 				Rendering->DrawImageAtPos(centerX  + pawnPos[1][j].x , centerY + (int)pawnPos[1][j].y , pawns[1][2], imageSize, imageSize);
 				break;
 			case 3:
+				if (pawnPos[1][j].x == -1)
+					continue;
 				Rendering->DrawImageAtPos(centerX   + pawnPos[1][j].x , centerY + (int)pawnPos[1][j].y , pawns[1][0], imageSize, imageSize);
 				break;
 			case 4:
+				if (pawnPos[1][j].x == -1)
+					continue;
 				Rendering->DrawImageAtPos(centerX  + pawnPos[1][j].x , centerY+(int)pawnPos[1][j].y , pawns[1][1], imageSize, imageSize);
 				break;
 			}
 		}
-		else
-			Rendering->DrawImageAtPos(centerX +  pawnPos[1][j].x , centerY + (int)pawnPos[1][j].y , pawns[1][5], imageSize, imageSize);
+		else {
+			if (pawnPos[1][j].x == -1)
+				continue;
+			Rendering->DrawImageAtPos(centerX + pawnPos[1][j].x, centerY + (int)pawnPos[1][j].y, pawns[1][5], imageSize, imageSize);
+		}
 	} 
  	Rendering->End();
 }
