@@ -72,6 +72,7 @@ private:
 	int* IsPositionOcuppied(int posX, int posY);
 	bool isLineOfSightClear(int start_i, int start_j, int target_i, int target_j,std::string piesa);
 	std::vector<INTVEC2> pionToRegina;
+	void RevertTable();
 public:
 	bool ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	Visual();

@@ -527,6 +527,7 @@ bool Visual::ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 							pawnPos[i][j].y = offset * j_y;
 
 							isActivated = false;
+							this->RevertTable();
 							//	printf("Check bro");
 							//	pawnPos[i][j].x = backup_x;
 							//	pawnPos[i][j].y = backup_y; 
@@ -857,19 +858,40 @@ void Visual::DrawTable()
 				Rendering->DrawImageAtPos(centerX + pawnPos[1][j].x, centerY + (int)pawnPos[1][j].y, pawns[1][5], imageSize, imageSize);
 		}
 	}
-	Rendering->End();
-	if (GetAsyncKeyState(VK_F3)) {
-	pawnPos[1][3].x = 0;
-	pawnPos[1][3].y = 3 * offset;
-	pawnPos[0][0].y = 2 * offset;
-	pawnPos[0][0].x = 6 * offset;
-	pawnPos[0][7].y = 4 * offset;
-	pawnPos[0][7].x = 6 * offset;
-	pawnPos[0][3].y = 3 * offset;
-	pawnPos[0][3].x = 6 * offset;
-	}	
+	Rendering->End(); 	
 	if (this->isCheckMate(1, 3, 0)) {
 		printf("Is CheckMate\n");
 		gameOver = true;
+	}
+}
+
+void Visual::RevertTable()
+{
+	D3DXVECTOR2 revertedPawnPos[2][16];
+	for (int i = 0; i < 2; i++)
+		for (int j = 0; j < 16; j++)
+		{
+			revertedPawnPos[i][j].x = pawnPos[i][j].x;
+			revertedPawnPos[i][j].y = pawnPos[i][j].y;
+		}
+	for(int i = 0 ; i < 2 ; i++)
+		for (int j = 0; j < 16; j++)
+		{
+			revertedPawnPos[i][j].x = (7 * offset) - revertedPawnPos[i][j].x;
+			revertedPawnPos[i][j].y = (7 * offset) - revertedPawnPos[i][j].y;
+		}
+	for (int j = 0; j < 16; j++)
+	{
+		pawnPos[0][j].x = revertedPawnPos[1][j].x;
+		pawnPos[0][j].y = revertedPawnPos[1][j].y;
+		pawnPos[1][j].x = revertedPawnPos[0][j].x;
+		pawnPos[1][j].y = revertedPawnPos[0][j].y;
+	}
+	LPDIRECT3DTEXTURE9 pawn_reverted[6];
+	for (int i = 0; i < 6; i++)
+	{
+		pawn_reverted[i] = pawns[0][i];
+		pawns[0][i] = pawns[1][i];
+		pawns[1][i] = pawn_reverted[i];
 	}
 }
