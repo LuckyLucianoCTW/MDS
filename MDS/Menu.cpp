@@ -520,13 +520,15 @@ bool Visual::ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 						}
 						//verificarea  
 						if (IsAlrightToMoveToPos(i, j, i_x, j_y))
-						{
+						{ 
+ 
 							int backup_x = pawnPos[i][j].x;
 							int backup_y = pawnPos[i][j].y;
 							pawnPos[i][j].x = offset * i_x;
 							pawnPos[i][j].y = offset * j_y;
+ 
 
-							isActivated = false;
+							isActivated = false; 
 							this->RevertTable();
 							//	printf("Check bro");
 							//	pawnPos[i][j].x = backup_x;
@@ -604,7 +606,13 @@ Visual::Visual()
 				pawnPos[1][(8 * i) + j].x = (float)j * offset;
 				pawnPos[1][(8 * i) + j].y = (offset * (7 - i));
 		}
-	 
+	int x, y;
+	x = pawnPos[0][4].x;
+	y = pawnPos[0][4].y;
+	pawnPos[0][4].x = pawnPos[0][3].x;
+	pawnPos[0][4].y = pawnPos[0][3].y;
+	pawnPos[0][3].x = x;
+	pawnPos[0][3].y = y;
 	wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("Chess Window"), NULL };
 	RegisterClassEx(&wc);
 	hwnd = CreateWindow(wc.lpszClassName, _T("Chess"), WS_OVERLAPPEDWINDOW, 100, 100, 800, 800, NULL, NULL, wc.hInstance, NULL);
@@ -874,9 +882,26 @@ void Visual::RevertTable()
 			revertedPawnPos[i][j].x = pawnPos[i][j].x;
 			revertedPawnPos[i][j].y = pawnPos[i][j].y;
 		}
+	int remember_pos_x = revertedPawnPos[0][3].x;
+	int remember_pos_y = revertedPawnPos[0][3].y;
+	revertedPawnPos[0][3].x = (7 * offset) - revertedPawnPos[0][4].x;
+	revertedPawnPos[0][3].y = (7 * offset) - revertedPawnPos[0][4].y;
+	revertedPawnPos[0][4].x = (7 * offset) - remember_pos_x;
+	revertedPawnPos[0][4].y = (7 * offset) - remember_pos_y;
+	
+	
+	remember_pos_x = revertedPawnPos[1][3].x;
+	remember_pos_y = revertedPawnPos[1][3].y;
+	revertedPawnPos[1][3].x = (7 * offset) - revertedPawnPos[1][4].x;
+	revertedPawnPos[1][3].y = (7 * offset) - revertedPawnPos[1][4].y;
+	revertedPawnPos[1][4].x = (7 * offset) - remember_pos_x;
+	revertedPawnPos[1][4].y = (7 * offset) - remember_pos_y;
 	for(int i = 0 ; i < 2 ; i++)
 		for (int j = 0; j < 16; j++)
 		{
+			
+			if (j == 3 || j == 4)
+				continue;
 			revertedPawnPos[i][j].x = (7 * offset) - revertedPawnPos[i][j].x;
 			revertedPawnPos[i][j].y = (7 * offset) - revertedPawnPos[i][j].y;
 		}
