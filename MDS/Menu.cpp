@@ -37,9 +37,11 @@ float dist2d(float x, float y, float a, float b)
 
 
 
-std::string Visual::WhatPieceItIs(int j)
+std::string Visual::WhatPieceItIs(int i, int j)
 {
-
+	for (int iPos = 0; iPos < this->pionToRegina.size(); iPos++)
+		if (i == pionToRegina[iPos].x && j == pionToRegina[iPos].y)
+			return "regina";
 	int a = j;
 	if (a > 4)
 		a = 7 - a;
@@ -67,7 +69,7 @@ void Visual::LoadSelectedSquares()
 	{
 		Selected_Squares.clear();
 		Selected_Squares.push_back(INTVEC2(((int)pawnPos[i][j].x/offset), (int)(pawnPos[i][j].y / offset)));
-		string piece = WhatPieceItIs(j); 
+		string piece = WhatPieceItIs(i,j); 
 		for (int z = 0; z < 8; z++)
 			for (int k = 0; k < 8; k++)
 			{
@@ -424,7 +426,7 @@ bool Visual::IsAlrightToMoveToPos(int start_i,int start_j,int target_i, int targ
 	
 	int posX = offset * target_i;
 	int posY = offset * target_j; 
-	string piece = WhatPieceItIs(start_j);
+	string piece = WhatPieceItIs(start_i,start_j);
 	if (piece == "rege" && start_i == 0)
 		piece = "regina";
 	else if (piece == "regina" && start_i == 0)
@@ -748,7 +750,17 @@ void Visual::DrawTable()
 	int image_center = ((offset - imageSize) / 2);
 	centerY += image_center;
 	centerX += image_center;
-
+	for (int pin_pos = 0; pin_pos < 16; pin_pos++)
+	{
+		if (pawnPos[0][pin_pos].y == 7 && WhatPieceItIs(0, pin_pos) == "pion")
+		{
+			this->pionToRegina.push_back(INTVEC2(0, pin_pos));
+		}
+		if (pawnPos[1][pin_pos].y == 0 && WhatPieceItIs(1, pin_pos) == "pion")
+		{
+			this->pionToRegina.push_back(INTVEC2(1, pin_pos));
+		}
+	}
 	for (int j = 0; j < 16; j++)
 	{
 
@@ -789,6 +801,10 @@ void Visual::DrawTable()
 		else {
 			if (pawnPos[0][j].x == -1)
 				continue;
+
+			if (WhatPieceItIs(1, j) == "regina")
+				Rendering->DrawImageAtPos(centerX + pawnPos[1][j].x, centerY + (int)pawnPos[1][j].y, pawns[0][1], imageSize, imageSize);
+			else
 			Rendering->DrawImageAtPos(centerX + pawnPos[0][j].x, centerY + (int)pawnPos[0][j].y, pawns[0][5], imageSize, imageSize);
 		}
 
@@ -831,10 +847,14 @@ void Visual::DrawTable()
 				break;
 			}
 		}
-		else {
+		else 
+		{
 			if (pawnPos[1][j].x == -1)
 				continue;
-			Rendering->DrawImageAtPos(centerX + pawnPos[1][j].x, centerY + (int)pawnPos[1][j].y, pawns[1][5], imageSize, imageSize);
+			if(WhatPieceItIs(1,j) == "regina")
+				Rendering->DrawImageAtPos(centerX + pawnPos[1][j].x, centerY + (int)pawnPos[1][j].y, pawns[1][1], imageSize, imageSize);
+			else
+				Rendering->DrawImageAtPos(centerX + pawnPos[1][j].x, centerY + (int)pawnPos[1][j].y, pawns[1][5], imageSize, imageSize);
 		}
 	}
 	Rendering->End();
@@ -848,7 +868,7 @@ void Visual::DrawTable()
 	pawnPos[0][3].y = 3 * offset;
 	pawnPos[0][3].x = 6 * offset;
 	}	
-	if (this->isCheckMate(1, 3, 0)) {  
+	if (this->isCheckMate(1, 3, 0)) {
 		printf("Is CheckMate\n");
 		gameOver = true;
 	}
