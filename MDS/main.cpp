@@ -6,7 +6,7 @@ int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance, LPSTR lpCmdLine,
 {
    	AllocConsole();
    	freopen("CON", "w", stdout);
-   	SetConsoleTitle("[DEBUG] CHEATS.TW");
+   	SetConsoleTitle("[DEBUG] MDS PROJECT BY BADILA MIHAI - DRAGOMIR DAVID - GAVRIL BOGDAN - SUGEAC ANDREI");
    	printf("Starting debugger...\n\n");
 	Chess_Table = new Visual;
 	Rendering = new Render(Chess_Table->GetDevice(),Chess_Table->getd3dpp());

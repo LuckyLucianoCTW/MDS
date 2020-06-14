@@ -68,9 +68,11 @@ class Visual
 private:
 	std::vector<INTVEC2> Selected_Squares;
 	bool IsAlrightToMoveToPos(int start_i, int start_j, int target_i, int target_j, bool changeValue = true);
-	std::string WhatPieceItIs(int j);
+	std::string WhatPieceItIs(int i, int j);
 	int* IsPositionOcuppied(int posX, int posY);
 	bool isLineOfSightClear(int start_i, int start_j, int target_i, int target_j,std::string piesa);
+	std::vector<INTVEC2> pionToRegina;
+	void RevertTable();
 public:
 	bool ChessWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	Visual();
