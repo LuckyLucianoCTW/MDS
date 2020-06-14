@@ -13,7 +13,6 @@ Render::~Render()
 	My_Pencil->Release();
 }
 
-
 void Render::Reset()
 {
 	My_Pencil->OnResetDevice();

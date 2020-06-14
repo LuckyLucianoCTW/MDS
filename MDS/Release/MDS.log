@@ -1,53 +1,73 @@
-﻿  Menu.cpp
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(133,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(135,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(263,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(265,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(339,75): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(391,71): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(392,71): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(394,42): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(395,42): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(398,41): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(399,41): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(484,44): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(484,35): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(506,21): warning C4244: 'initializing': conversion from 'long' to 'float', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(507,21): warning C4244: 'initializing': conversion from 'long' to 'float', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(522,21): warning C4244: 'initializing': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(523,21): warning C4244: 'initializing': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(524,33): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(525,33): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(596,34): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(602,41): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(666,72): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(666,47): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(697,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(698,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(716,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(736,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(765,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(770,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(775,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(780,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(785,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(792,38): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(810,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(815,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(820,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(825,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(830,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(837,38): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(843,22): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(844,22): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(845,22): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(846,22): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(847,22): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(848,22): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-C:\Users\windo\Desktop\MDS\MDS\Menu.cpp(849,22): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+﻿  main.cpp
+  Menu.cpp
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(133,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(135,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(263,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(265,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(339,75): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(391,71): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(392,71): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(394,42): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(395,42): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(398,41): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(399,41): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(484,44): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(484,35): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(506,21): warning C4244: 'initializing': conversion from 'long' to 'float', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(507,21): warning C4244: 'initializing': conversion from 'long' to 'float', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(522,21): warning C4244: 'initializing': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(523,21): warning C4244: 'initializing': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(524,33): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(525,33): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(596,34): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(602,41): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(666,72): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(666,47): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(697,21): warning C4018: '<': signed/unsigned mismatch
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(698,22): warning C4018: '<': signed/unsigned mismatch
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(716,20): warning C4018: '<': signed/unsigned mismatch
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(736,22): warning C4018: '<': signed/unsigned mismatch
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(765,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(770,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(775,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(780,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(785,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(792,38): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(810,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(815,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(820,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(825,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(830,39): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(837,38): warning C4244: 'argument': conversion from 'FLOAT' to 'int', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(843,22): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(844,22): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(845,22): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(846,22): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(847,22): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(848,22): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(849,22): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+  render.cpp
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\render.cpp(23,41): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\render.cpp(23,34): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\render.cpp(28,59): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\render.cpp(28,48): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
   Generating code
-  0 of 165 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  MDS.vcxproj -> C:\Users\windo\Desktop\MDS\Release\MDS.exe
+LINK : fatal error C1001: Internal compiler error.
+  (compiler file 'd:\agent\_work\6\s\src\vctools\Compiler\Utc\src\p2\main.c', line 181)
+   To work around this problem, try simplifying or changing the program near the locations listed above.
+  If possible please provide a repro here: https://developercommunity.visualstudio.com 
+  Please choose the Technical Support command on the Visual C++ 
+   Help menu, or open the Technical Support help file for more information
+    link!InvokeCompilerPass()+0x3c942
+    link!InvokeCompilerPass()+0x2e3a6
+    link!InvokeCompilerPass()+0x2e2ab
+    link!InvokeCompilerPass()+0x3b739
+    link!CloseTypeServerPDB()+0x824
+    link!CloseTypeServerPDB()+0x74e
+    link!CloseTypeServerPDB()+0x603b
+    link!CloseTypeServerPDB()+0x5d6d
+    link!CloseTypeServerPDB()+0x4cd3
+    link!CloseTypeServerPDB()+0x4e70
+  
+  
+LINK : fatal error LNK1000: Internal error during IMAGE::BuildImage
