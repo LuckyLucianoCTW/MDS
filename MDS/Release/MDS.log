@@ -1,5 +1,7 @@
 ﻿  main.cpp
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
   Menu.cpp
 E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(133,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 E:\WORK\Faculty\2nd Year\MDS\client\MDS\MDS\Menu.cpp(135,29): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
@@ -73,10 +75,14 @@ LINK : fatal error C1001: Internal compiler error.
   
 LINK : fatal error LNK1000: Internal error during IMAGE::BuildImage
 =======
+>>>>>>> a76803596fbfede61c2bab2276fca24864eb1174
   Generating code
   1 of 166 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   MDS.vcxproj -> C:\Users\windo\Desktop\MDS\Release\MDS.exe
+<<<<<<< HEAD
+=======
 >>>>>>> 73b0e53cad9f30bfc645b42d646e9fa949ddc0c9
+>>>>>>> a76803596fbfede61c2bab2276fca24864eb1174

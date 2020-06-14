@@ -13,6 +13,10 @@ Render::~Render()
 	My_Pencil->Release();
 }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> a76803596fbfede61c2bab2276fca24864eb1174
 void Render::Reset()
 {
 	My_Pencil->OnResetDevice();

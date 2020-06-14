@@ -2,6 +2,14 @@ c:\users\windo\desktop\mds\mds\release\vc142.pdb
 c:\users\windo\desktop\mds\mds\release\render.obj
 c:\users\windo\desktop\mds\mds\release\menu.obj
 c:\users\windo\desktop\mds\mds\release\main.obj
+<<<<<<< HEAD
+c:\users\windo\desktop\mds\mds\release\mds.tlog\cl.command.1.tlog
+c:\users\windo\desktop\mds\mds\release\mds.tlog\cl.read.1.tlog
+c:\users\windo\desktop\mds\mds\release\mds.tlog\cl.write.1.tlog
+c:\users\windo\desktop\mds\mds\release\mds.tlog\link.command.1.tlog
+c:\users\windo\desktop\mds\mds\release\mds.tlog\link.read.1.tlog
+c:\users\windo\desktop\mds\mds\release\mds.tlog\link.write.1.tlog
+=======
 c:\users\windo\desktop\mds\mds\release\socketclient.obj
 e:\work\faculty\2nd year\mds\client\mds\mds\release\vc142.pdb
 e:\work\faculty\2nd year\mds\client\mds\mds\release\render.obj
@@ -22,3 +30,4 @@ e:\work\faculty\2nd year\mds\client\mds\mds\release\mds.tlog\link.command.1.tlog
 e:\work\faculty\2nd year\mds\client\mds\mds\release\mds.tlog\link.delete.1.tlog
 e:\work\faculty\2nd year\mds\client\mds\mds\release\mds.tlog\link.read.1.tlog
 e:\work\faculty\2nd year\mds\client\mds\mds\release\mds.tlog\link.write.1.tlog
+>>>>>>> a76803596fbfede61c2bab2276fca24864eb1174
